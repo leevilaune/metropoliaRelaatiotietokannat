@@ -204,3 +204,73 @@ LEFT JOIN goal_reached ON goal.id = goal_id
 LEFT JOIN game ON game.id = game_id;
 ```
 ![image](https://github.com/user-attachments/assets/af63a2ae-4403-4056-b68a-db635fafe763)
+
+# 06 Sisäkyselyt
+
+### Tehtävä 1
+```sql
+SELECT name
+FROM country
+WHERE iso_country IN(
+                  SELECT iso_country
+                  FROM airport
+                  WHERE name LIKE 'Satsuma%'
+);
+```
+![image](https://github.com/user-attachments/assets/d3ce8d4d-a82d-4377-80b4-4e59429e8aec)
+
+### Tehtävä 2
+```sql
+SELECT name
+FROM airport
+WHERE iso_country IN(
+                  SELECT iso_country
+                  FROM airport
+                  WHERE iso_country IN(
+                                    SELECT iso_country
+                                    FROM country
+                                    WHERE name = "Monaco"
+                  )
+);
+```
+![image](https://github.com/user-attachments/assets/94a195b6-466a-48c1-87a0-797c433b414e)
+
+### Tehtävä 3
+```sql
+SELECT screen_name
+FROM game
+WHERE id IN(
+         SELECT game_id
+         FROM goal_reached
+         WHERE goal_id IN(
+                       SELECT id
+                       FROM goal
+                       WHERE name = "CLOUDS"
+         )
+);
+```
+![image](https://github.com/user-attachments/assets/6ef3bcb0-6291-44ec-b864-3c643638b52a)
+
+# Tehtävä 4
+```sql
+SELECT name
+FROM country
+WHERE iso_country NOT IN(
+                      SELECT iso_country
+                      FROM airport
+);
+```
+![image](https://github.com/user-attachments/assets/7a644ad6-29f7-4ea2-93fc-17534a3d2742)
+
+# Tehtävä 5
+```sql
+SELECT name
+FROM goal
+WHERE id NOT IN(
+             SELECT goal_id
+             FROM goal_reached
+             JOIN game ON goal_reached.game_id = game_id
+             WHERE game.screen_name = "Heini"
+);
+```
+![image](https://github.com/user-attachments/assets/c86ba4c6-6e45-4bf8-82e4-b12b319da85d)
