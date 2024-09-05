@@ -251,7 +251,7 @@ WHERE id IN(
 ```
 ![image](https://github.com/user-attachments/assets/6ef3bcb0-6291-44ec-b864-3c643638b52a)
 
-# Tehtävä 4
+### Tehtävä 4
 ```sql
 SELECT name
 FROM country
@@ -262,7 +262,7 @@ WHERE iso_country NOT IN(
 ```
 ![image](https://github.com/user-attachments/assets/7a644ad6-29f7-4ea2-93fc-17534a3d2742)
 
-# Tehtävä 5
+### Tehtävä 5
 ```sql
 SELECT name
 FROM goal
@@ -274,3 +274,101 @@ WHERE id NOT IN(
 );
 ```
 ![image](https://github.com/user-attachments/assets/c86ba4c6-6e45-4bf8-82e4-b12b319da85d)
+
+# 07 Koostetietokyselyt
+
+### Tehtävä 1
+```sql
+SELECT MAX(elevation_ft)
+FROM airport;
+```
+![image](https://github.com/user-attachments/assets/3d140ecb-a672-49cb-a198-aff07ef9f910)
+
+### Tehtävä 2
+```sql
+SELECT continent, COUNT(*)
+FROM country
+GROUP BY continent;
+```
+![image](https://github.com/user-attachments/assets/c41090db-dc7a-4add-85e6-33e36ee5e6d9)
+
+### Tehtävä 3
+```sql
+SELECT screen_name, COUNT(*)
+FROM game, goal_reached
+WHERE id = game_id
+GROUP BY screen_name;
+```
+![image](https://github.com/user-attachments/assets/8968d116-48c5-4d48-9a20-f6019536cb49)
+
+### Tehtävä 4
+```sql
+SELECT screen_name
+FROM game
+GROUP BY screen_name
+ORDER BY co2_consumed ASC LIMIT 1;
+```
+![image](https://github.com/user-attachments/assets/0d1ec801-473c-4b28-b940-3766a448a101)
+
+### Tehtävä 5
+```sql
+SELECT country.name, COUNT(*)
+FROM airport, country
+WHERE airport.iso_country = country.iso_country
+GROUP BY country.iso_country
+ORDER BY COUNT(*) DESC
+LIMIT 50;
+```
+![image](https://github.com/user-attachments/assets/3a5eb562-4ebf-498c-9604-4f210e57abd7)
+
+### Tehtävä 6
+```sql
+SELECT country.name
+FROM country
+JOIN airport ON country.iso_country = airport.iso_country
+GROUP BY airport.iso_country, country.name HAVING COUNT(airport.id) > 1000;
+```
+![image](https://github.com/user-attachments/assets/f194acfd-299b-458b-aab8-2ef575cabd3d)
+
+### Tehtävä 7
+```sql
+SELECT name
+FROM airport
+WHERE elevation_ft IN(
+                   SELECT MAX(elevation_ft)
+                   FROM airport
+);
+```
+![image](https://github.com/user-attachments/assets/030c8b0c-191d-49ac-8fdf-e32804ad48fa)
+
+### Tehtävä 8
+```sql
+SELECT country.name
+FROM country
+JOIN airport
+ON airport.iso_country = country.iso_country
+WHERE elevation_ft IN(
+                   SELECT MAX(elevation_ft)
+                   FROM airport);
+```
+![image](https://github.com/user-attachments/assets/54f0f512-07db-486a-9854-d012d9dcbd9a)
+
+### Tehtävä 9
+```sql
+SELECT COUNT(*)
+FROM goal_reached, game
+WHERE id = game_id and screen_name = "Vesa"
+GROUP BY screen_name;
+```
+![image](https://github.com/user-attachments/assets/ca9dfcda-4b31-413e-9609-1b098737643c)
+
+### Tehtävä 10
+```sql
+SELECT name
+FROM airport
+WHERE latitude_deg IN(
+                   SELECT MIN(latitude_deg)
+                   FROM airport
+);
+```
+![image](https://github.com/user-attachments/assets/e2eff7fd-087e-4e30-9622-595df2b3ca99)
