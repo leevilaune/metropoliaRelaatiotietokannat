@@ -372,3 +372,29 @@ WHERE latitude_deg IN(
 );
 ```
 ![image](https://github.com/user-attachments/assets/e2eff7fd-087e-4e30-9622-595df2b3ca99)
+
+# 08 Päivityskyselyt
+
+### Tehtävä 1
+```sql
+UPDATE game
+SET location = (
+               SELECT ident
+               FROM airport
+               WHERE name = "Nottingham Airport"), co2_consumed = co2_consumed +500
+               WHERE screen_name = "Vesa";
+```
+![image](https://github.com/user-attachments/assets/3a4a277e-9f84-4a24-9bb0-63951c95d3b2)
+
+### Tehtävä 3
+```sql
+DELETE FROM goal_reached;
+```
+![image](https://github.com/user-attachments/assets/893aaf81-e3b5-4823-b489-3360596cdd4a)
+
+
+### Tehtävä 4
+```sql
+DELETE FROM game;
+```
+![image](https://github.com/user-attachments/assets/e28d79d1-fe11-4064-a31b-aa73528c992c)
