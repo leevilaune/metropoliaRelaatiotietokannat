@@ -74,8 +74,87 @@ FROM game;
 ```
 ![image](https://github.com/user-attachments/assets/a6fa43be-50fc-47c2-81c7-88058aaed81c)
 
+# 04 Where-osan liitosehto
 
+### Tehtävä 1
+```sql
+SELECT country.name AS "country name", airport.name AS "airport name"
+FROM country, airport
+WHERE country.name = "Iceland" AND airport.iso_country=country.iso_country;
+```
+![image](https://github.com/user-attachments/assets/b4f082e7-db45-48ac-ad38-319ac1086408)
 
+### Tehtävä 2
+```sql
+SELECT name AS "airport name"
+FROM airport
+WHERE iso_country="FR" AND type="large_airport";
+```
+![image](https://github.com/user-attachments/assets/e7326875-fcb4-4874-aec8-ead3e57f9d4c)
 
+### Tehtävä 3
+```sql
+SELECT country.name AS "country_name", airport.name AS "airport_name"
+FROM country, airport
+WHERE airport.iso_country = country.iso_country AND airport.continent="AN";
+```
+![image](https://github.com/user-attachments/assets/c263ca6c-c80d-4b5f-ac3d-eb779a188ea5)
 
+### Tehtävä 4
+```sql
+SELECT airport.elevation_ft
+FROM airport, game
+WHERE game.screen_name="Heini" AND airport.ident=game.location;
+```
+![image](https://github.com/user-attachments/assets/758b27e1-45d1-4236-9df8-58fc51c2f709)
+
+### Tehtävä 5
+```sql
+SELECT airport.elevation_ft*0.3048 AS "elevation_m"
+FROM airport, game
+WHERE game.screen_name="Heini" AND airport.ident=game.location;
+```
+![image](https://github.com/user-attachments/assets/3604afc9-7456-4ac4-b053-1cc9e2ba9e61)
+
+### Tehtävä 6
+```sql
+SELECT airport.name
+FROM airport, game
+WHERE game.screen_name="Ilkka" AND airport.ident=game.location;
+```
+![image](https://github.com/user-attachments/assets/cc027ca3-31e4-482b-b1e6-449ac14c927d)
+
+### Tehtävä 7
+```sql
+SELECT country.name
+FROM airport, game, country
+WHERE game.screen_name="Ilkka" AND airport.ident=game.location AND airport.iso_country=country.iso_country;
+```
+![image](https://github.com/user-attachments/assets/e271a0a6-219f-4d98-8fd7-e264a79d5292)
+
+### Tehtävä 8 
+```sql
+SELECT name
+FROM goal, goal_reached, game
+WHERE game.id = game_id AND goal.id = goal_id AND screen_name = "Heini";
+```
+![image](https://github.com/user-attachments/assets/d672a72a-bb78-4814-bf6f-1618e41f20ea)
+
+### Tehtävä 9
+```sql
+SELECT airport.name
+FROM airport, game, goal, goal_reached
+WHERE ident = location AND game.id = game_id AND goal.id = goal_id
+AND screen_name = "Ilkka" AND goal.name = "CLOUDS";
+```
+![image](https://github.com/user-attachments/assets/ef2d4445-86ca-4cb4-b05d-e800beb820a7)
+
+### Tehtävä 10
+```sql
+SELECT country.name
+FROM country, airport, game, goal, goal_reached
+WHERE airport.iso_country = country.iso_country AND ident = location AND game.id = game_id
+AND goal.id = goal_id AND screen_name = "Ilkka" and goal.name = "CLOUDS";
+```
+![image](https://github.com/user-attachments/assets/3a323c2d-c68d-4dff-9cda-ef8693bd7b29)
 
