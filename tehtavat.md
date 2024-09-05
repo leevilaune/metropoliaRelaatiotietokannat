@@ -158,3 +158,49 @@ AND goal.id = goal_id AND screen_name = "Ilkka" and goal.name = "CLOUDS";
 ```
 ![image](https://github.com/user-attachments/assets/3a323c2d-c68d-4dff-9cda-ef8693bd7b29)
 
+# 05 Join
+
+### Tehtävä 1
+```sql
+SELECT country.name AS "country name", airport.name AS "airport name"
+FROM airport
+INNER JOIN country ON country.iso_country = airport.iso_country
+AND country.name = "Finland" AND airport.scheduled_service="yes";
+```
+![image](https://github.com/user-attachments/assets/a8657d62-2b55-4f4f-a8c9-f4ad16e79c3e)
+
+### Tehtävä 2
+```sql
+SELECT game.screen_name, airport.name
+FROM airport
+INNER JOIN game ON game.location = airport.ident;
+```
+![image](https://github.com/user-attachments/assets/5ca3dd7b-2195-43d2-9604-447285f5bc7e)
+
+### Tehtävä 3
+```sql
+SELECT game.screen_name, country.name
+FROM airport
+INNER JOIN game on game.location = airport.ident
+INNER JOIN country
+WHERE country.iso_country = airport.iso_country;
+```
+![image](https://github.com/user-attachments/assets/ff1e65af-35ac-42d0-9326-0949b9d7ada2)
+
+### Tehtävä 4
+```sql
+SELECT airport.name, game.screen_name
+FROM airport
+LEFT JOIN game ON game.location = airport.ident
+WHERE airport.name LIKE "%hels%";
+```
+![image](https://github.com/user-attachments/assets/fc85fe4c-3ef4-4003-b811-86ce1a3def1c)
+
+### Tehtävä 5
+```sql
+SELECT name, screen_name
+FROM goal
+LEFT JOIN goal_reached ON goal.id = goal_id
+LEFT JOIN game ON game.id = game_id;
+```
+![image](https://github.com/user-attachments/assets/af63a2ae-4403-4056-b68a-db635fafe763)
